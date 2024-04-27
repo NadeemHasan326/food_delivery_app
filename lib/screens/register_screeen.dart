@@ -3,6 +3,7 @@ import 'package:food_delivery_app/common/constants/color_constant.dart';
 import 'package:food_delivery_app/router/routes.dart';
 import 'package:food_delivery_app/screens/widgets/common_button.dart';
 import 'package:food_delivery_app/screens/widgets/common_text_field.dart';
+import 'package:food_delivery_app/services/auth_service.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -70,7 +71,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 CommonButton(
                   buttonText: "Sign up",
-                  onTap: () {},
+                  onTap: () async {
+                    AuthServices authServices = AuthServices();
+                    await authServices.signUp(
+                        emailController.text, passwordController.text);
+                  },
                 ),
                 const SizedBox(
                   height: 20,

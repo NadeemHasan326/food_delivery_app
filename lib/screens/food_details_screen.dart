@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/common/constants/color_constant.dart';
 import 'package:food_delivery_app/models/food.dart';
+import 'package:food_delivery_app/models/resturant.dart';
+import 'package:food_delivery_app/router/routes.dart';
 import 'package:food_delivery_app/screens/widgets/common_button.dart';
+import 'package:provider/provider.dart';
 
 class FoodDetailsScreen extends StatefulWidget {
   final FoodModel? food;
@@ -115,7 +118,17 @@ class _FoodDetailsScreenState extends State<FoodDetailsScreen> {
                       const SizedBox(
                         height: 20,
                       ),
-                      CommonButton(buttonText: "Add to cart", onTap: () {})
+                      CommonButton(
+                          buttonText: "Add to cart",
+                          onTap: () {
+                            context.read<Resturant>().addToCart(
+                                widget.food!,
+                                widget.food?.addons
+                                        ?.where((element) => element.isSelected)
+                                        .toList() ??
+                                    []);
+                            Navigator.of(context).pushNamed(Routes.homeScreen);
+                          })
                     ],
                   ),
                 )

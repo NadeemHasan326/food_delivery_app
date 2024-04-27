@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/common/constants/color_constant.dart';
+import 'package:food_delivery_app/router/routes.dart';
 
 class MySliverAppBar extends StatelessWidget {
   final Widget child;
@@ -14,11 +15,15 @@ class MySliverAppBar extends StatelessWidget {
       collapsedHeight: 120,
       floating: false,
       pinned: true,
-      actions:const [
-         Padding(
-           padding: EdgeInsets.only(right: 20),
-           child: Icon(Icons.shopping_cart),
-         )
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 20),
+          child: InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed(Routes.cartPage);
+              },
+              child: const Icon(Icons.shopping_cart)),
+        )
       ],
       title: const Text("Sunset dinner"),
       flexibleSpace: FlexibleSpaceBar(

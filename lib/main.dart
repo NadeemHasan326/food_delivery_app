@@ -1,9 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/models/resturant.dart';
 import 'package:food_delivery_app/router/router.dart';
+import 'package:food_delivery_app/screens/user_logged_in_or_not.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+    apiKey: 'key',
+    appId: 'id',
+    messagingSenderId: 'sendid',
+    projectId: 'food_delivery_app',
+    storageBucket: '',
+  ));
   runApp(MultiProvider(
     providers: [ChangeNotifierProvider(create: (context) => Resturant())],
     child: const MyApp(),
@@ -19,7 +30,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'Food Delivery app',
       debugShowCheckedModeBanner: false,
-      initialRoute: "/login",
+      home: UserLoggedInOrNot(),
       onGenerateRoute: GenerateRoutes.generateRoute,
     );
   }

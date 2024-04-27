@@ -3,6 +3,7 @@ import 'package:food_delivery_app/common/constants/color_constant.dart';
 import 'package:food_delivery_app/router/routes.dart';
 import 'package:food_delivery_app/screens/widgets/common_button.dart';
 import 'package:food_delivery_app/screens/widgets/common_text_field.dart';
+import 'package:food_delivery_app/services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -61,8 +62,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 CommonButton(
                   buttonText: "Login",
-                  onTap: () {
-                    Navigator.of(context).pushNamed(Routes.homeScreen);
+                  onTap: () async {
+                    AuthServices authServices = AuthServices();
+                    await authServices.login(
+                        emailController.text, passwordController.text);
                   },
                 ),
                 const SizedBox(

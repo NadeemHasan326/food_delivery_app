@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/models/food.dart';
 import 'package:food_delivery_app/router/routes.dart';
+import 'package:food_delivery_app/screens/cart_page_screen.dart';
+import 'package:food_delivery_app/screens/checkout_screen.dart';
 import 'package:food_delivery_app/screens/food_details_screen.dart';
 import 'package:food_delivery_app/screens/home_screen.dart';
 import 'package:food_delivery_app/screens/login_screen.dart';
@@ -18,6 +20,10 @@ class GenerateRoutes {
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       case Routes.settingsScreen:
         return MaterialPageRoute(builder: (context) => const SettingsScreen());
+      case Routes.cartPage:
+        return MaterialPageRoute(builder: (context) => const CartPagScren());
+      case Routes.checkoutPage:
+        return MaterialPageRoute(builder: (context) => const CheckOutScreen());
       case Routes.foodDetailsScreen:
         return MaterialPageRoute(
             builder: (context) => FoodDetailsScreen(

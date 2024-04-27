@@ -1,5 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/common/constants/image_constant.dart';
+import 'package:food_delivery_app/models/cart_item.dart';
 import 'package:food_delivery_app/models/food.dart';
 
 class Resturant with ChangeNotifier {
@@ -315,4 +317,68 @@ class Resturant with ChangeNotifier {
   ];
 
   List<FoodModel> get menu => _menu;
+
+  final List<CartItem> _cart = [];
+
+  List<CartItem> get cart => _cart;
+
+  // add to the cart
+  void addToCart(FoodModel food, List<Addon> selectedAddons) {
+    CartItem? cartItem = _cart.firstWhereOrNull((element) {
+      bool isSameFood = element.foodModel == food;
+
+      bool isAddonSame = element.selectedAddons == selectedAddons;
+
+      return isSameFood && isAddonSame;
+    });
+
+    if (cartItem != null) {
+      cartItem.quantity++;
+    } else {
+      _cart.add(CartItem(foodModel: food, selectedAddons: selectedAddons));
+    }
+
+    notifyListeners();
+  }
+
+  // remove from the cart
+  void removeFromCart(CartItem cartItem) {
+    int cartIndex = _cart.indexOf(cartItem);
+    if (cartItem.quantity > 1) {
+      cartItem.quantity--;
+    } else {
+      _cart.removeAt(cartIndex);
+    }
+    notifyListeners();
+  }
+
+  // get total price from cart
+  double totalPriceOfCart() {
+    double total = 0;
+    for (CartItem item in _cart) {
+      double foodPrice = item.foodModel.price ?? 0;
+
+      double addonsPrice = item.selectedAddons
+          .fold(0, (previousValue, element) => previousValue + element.price!);
+
+      total = total + ((foodPrice + addonsPrice) * item.quantity);
+    }
+
+    return total;
+  }
+
+  // get total items in cart
+  int getTotalItemsOfCart() {
+    int totalItem = 0;
+    for (CartItem item in _cart) {
+      totalItem += item.quantity;
+    }
+    return totalItem;
+  }
+
+  // clear cart
+  void clearCart() {
+    _cart.clear();
+    notifyListeners();
+  }
 }
