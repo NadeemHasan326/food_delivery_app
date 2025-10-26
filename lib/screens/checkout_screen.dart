@@ -46,7 +46,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       cardNumber = data.cardNumber;
                       cardHolderName = data.cardHolderName;
                       cvvCode = data.cvvCode;
-                      expiryDate = data.expiryDate; 
+                      expiryDate = data.expiryDate;
                       setState(() {});
                     },
                     formKey: _formKey)

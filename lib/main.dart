@@ -7,14 +7,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-    apiKey: 'key',
-    appId: 'id',
-    messagingSenderId: 'sendid',
-    projectId: 'food_delivery_app',
-    storageBucket: '',
-  ));
+  await Firebase.initializeApp();
   runApp(MultiProvider(
     providers: [ChangeNotifierProvider(create: (context) => Resturant())],
     child: const MyApp(),

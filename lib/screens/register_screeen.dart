@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/common/constants/color_constant.dart';
 import 'package:food_delivery_app/router/routes.dart';
+import 'package:food_delivery_app/screens/home_screen.dart';
 import 'package:food_delivery_app/screens/widgets/common_button.dart';
 import 'package:food_delivery_app/screens/widgets/common_text_field.dart';
 import 'package:food_delivery_app/services/auth_service.dart';
@@ -75,6 +76,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     AuthServices authServices = AuthServices();
                     await authServices.signUp(
                         emailController.text, passwordController.text);
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
                   },
                 ),
                 const SizedBox(

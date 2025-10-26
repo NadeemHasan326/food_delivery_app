@@ -2,12 +2,12 @@
   "project_info": {
     "project_number": "68095478078",
     "project_id": "food-delivery-app-58994",
-    "storage_bucket": "food-delivery-app-58994.appspot.com"
+    "storage_bucket": "food-delivery-app-58994.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:68095478078:android:048d611d474a1864bb446f",
+        "mobilesdk_app_id": "1:68095478078:android:fb46914de4c2cd69bb446f",
         "android_client_info": {
           "package_name": "com.example.food_delivery_app"
         }
